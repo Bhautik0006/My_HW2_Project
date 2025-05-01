@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Invitation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: url('https://img.freepik.com/free-vector/rectangle-gold-frame-with-foliage-pattern-background-vector_53876-109053.jpg?semt=ais_hybrid&w=740') no-repeat center center fixed;
+            background-size: cover;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .invitation {
+            max-width: 600px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .invitation img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .invitation h2 {
+            color: #6c5ce7;
+            margin-bottom: 1rem;
+        }
+
+        .invitation p {
+            margin: 0.5rem 0;
+        }
+
+        .back-btn {
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background-color: #6c5ce7;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #5946d2;
+        }
+    </style>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="invitation" id="invitation">
+        <img src="" id="inv-img" alt="Event Background">
+        <h2 id="inv-title"></h2>
+        <p><strong>Hosted By:</strong> <span id="inv-host"></span></p>
+        <p><strong>Date & Time:</strong> <span id="inv-datetime"></span></p>
+        <p><strong>Location:</strong> <span id="inv-location"></span></p>
+        <p id="inv-message"></p>
+        <button class="back-btn" onclick="history.back()">Go Back</button>
+        <button class="back-btn" onclick="downloadInvitation()">Download</button>
+    </div>
+
+    <script>
+        const data = JSON.parse(sessionStorage.getItem("invitationData"));
+
+        if (!data) {
+            document.getElementById("invitation").innerHTML = "<p>Invalid or missing data. Please create your invitation again.</p>";
+        } else {
+            const dateFormatted = new Date(data.date).toLocaleDateString('en-US', {
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+            });
+
+            document.getElementById("inv-img").src = data.imageSrc;
+            document.getElementById("inv-title").textContent = data.eventName;
+            document.getElementById("inv-host").textContent = data.hostedBy;
+            document.getElementById("inv-datetime").textContent = `${dateFormatted} at ${data.time}`;
+            document.getElementById("inv-location").textContent = data.location;
+            document.getElementById("inv-message").textContent = data.message;
+            
+            function downloadInvitation() {
+        const invitationElement = document.getElementById("invitation");
+        html2canvas(invitationElement).then(canvas => {
+            const link = document.createElement("a");
+            link.download = "invitation.png";
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        });
+    }
+        }
+    </script>
+</body>
+</html>

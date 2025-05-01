@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InviteMe - Create Beautiful Event Invitations</title>
+    <link rel="stylesheet" href="style1.css">
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Invite<span>Me</span></div>
+                <div class="nav-links">
+                    <a href="xyz java.html" class="nav-link active" data-section="home">Home</a>
+                    <a href="aboutus.html" class="nav-link" data-section="about">About Us</a>
+                    <a href="contactus.html" class="nav-link" data-section="contact">Contact Us</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Create Beautiful Event Invitations</h1>
+            <p>Design custom invitations for birthdays, weddings, dinner parties, and group trips in minutes!</p>
+            <a href="#create" class="btn">Create Your Invitation</a>
+        </div>
+    </section>
+
+    <section id="home" class="home-section">
+        <div class="container">
+            <h2 class="section-title">Choose Your Event Type</h2>
+            <div class="event-types">
+                <div class="event-type" data-event="birthday">
+                    <img src="https://rukminim2.flixcart.com/image/850/1000/xif0q/birthday-combo/q/b/y/birthday-decoration-combo-with-black-white-silver-balloons-and-original-imagpuw5fg5jhhmg.jpeg?q=90&crop=false" alt="Birthday">
+                    <h3>Birthday</h3>
+                    <p>Create fun birthday celebration invitations</p>
+                </div>
+                <div class="event-type" data-event="wedding">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPj-smTtWetXq7cIlIcqB7Bxur88xYsoE7hkDpTtHXsjp_QxtVzwNXj0D4AMy3fQeLE6I&usqp=CAU" alt="Wedding">
+                    <h3>Wedding Anniversary</h3>
+                    <p>Design elegant wedding invitations</p>
+                </div>
+                <div class="event-type" data-event="dinner">
+                    <img src="https://hips.hearstapps.com/hmg-prod/images/table-decor-2-1653411620.png?crop=0.6697674418604651xw:1xh;center,top&resize=1200:*" alt="Dinner Party">
+                    <h3>Dinner Party</h3>
+                    <p>Invite friends to a delicious dinner party</p>
+                </div>
+                <div class="event-type" data-event="trip">
+                    <img src="https://media.istockphoto.com/id/1166378619/photo/large-group-of-happy-friends-in-mountains-area.jpg?s=612x612&w=0&k=20&c=PRlOrqCmlc7QEpTtQw5Blk5NlTtQzT8osgFDK8059p0=" alt="Group Trip">
+                    <h3>Group Trip</h3>
+                    <p>Plan adventures with your group</p>
+                </div>
+            </div>
+
+            <div id="create" class="event-creator">
+                <h2 class="section-title">Create Your Invitation</h2>
+                <form id="invitation-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="event-type">Event Type</label>
+                            <select id="event-type" required>
+                                <option value="">-- Select Event Type --</option>
+                                <option value="birthday">Birthday</option>
+                                <option value="wedding">Wedding Anniversary</option>
+                                <option value="dinner">Dinner Party</option>
+                                <option value="trip">Group Trip</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-name">Event Name</label>
+                            <input type="text" id="event-name" placeholder="Enter event name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="hosted-by">Hosted By</label>
+                            <input type="text" id="hosted-by" placeholder="Enter host name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" placeholder="Enter location" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <input type="time" id="time" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="image-type">Image Source</label>
+                        <select id="image-type">
+                            <option value="suggested">Use Suggested Image</option>
+                            <option value="upload">Upload Image</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="image-upload-container" style="display: none;">
+                        <label for="image-upload">Upload Image</label>
+                        <input type="file" id="image-upload" accept="image/*">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Additional Message (Optional)</label>
+                        <textarea id="message" rows="3" placeholder="Enter any additional details for your guests"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Generate Invitation</button>
+             
+                </form>
+                
+                <div class="preview-section" style="display: none;">
+                    <h2 class="section-title">Your Invitation Preview</h2>
+                    <div class="invitation-preview">
+                        <img src="/api/placeholder/600/200" alt="Event" class="preview-img" id="preview-img">
+                        <h2 id="preview-title">Event Title</h2>
+                        <div class="invitation-details">
+                            <p><strong>Hosted By:</strong> <span id="preview-host">Host Name</span></p>
+                            <p><strong>Date & Time:</strong> <span id="preview-datetime">Date and Time</span></p>
+                            <p><strong>Location:</strong> <span id="preview-location">Location</span></p>
+                            <p id="preview-message"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+       
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Invite<span>Me</span></div>
+                <div class="footer-links">
+                    <a href="xyz java.html" data-section="home">Home</a>
+                    <a href="aboutus.html" data-section="about">About</a>
+                    <a href="contactus.html" data-section="contact">Contact</a>
+                </div>
+                <div class="copyright">
+                    &copy; 2025 InviteMe. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
